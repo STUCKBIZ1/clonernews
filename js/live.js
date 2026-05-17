@@ -27,4 +27,18 @@ ui.liveBanner.addEventListener("click", async () => {
     }
 });
 
+const prependItems = async (ids) => {
+    const items = await fetchItems(ids);
+    state.allIDs = [...ids, ...state.allIDs];
+    state.loadedCount += ids.length;
+
+    items
+        .filter((i) => i && !i.deleted && !i.dead)
+        .sort((a, b) => b.time - a.time)
+        .forEach((item) =>
+            ui.postList.insertBefore(buildCard(item), ui.postList.firstChild),
+        );
+};
+
+
 setInterval(checkLive, POLL_INTERVAL);
