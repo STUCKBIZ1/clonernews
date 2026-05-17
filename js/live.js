@@ -33,7 +33,13 @@ const prependItems = async (ids) => {
     state.loadedCount += ids.length;
 
     items
-        .filter((i) => i && !i.deleted && !i.dead)
+        .filter(
+            (i) =>
+                i &&
+                !i.deleted &&
+                !i.dead &&
+                (state.currentFeed !== "askstories" || i.type === "poll"),
+        )
         .sort((a, b) => b.time - a.time)
         .forEach((item) =>
             ui.postList.insertBefore(buildCard(item), ui.postList.firstChild),

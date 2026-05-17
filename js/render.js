@@ -1,12 +1,20 @@
 const badge = (type) => {
     const s = document.createElement("span");
-    const displayType = state.currentFeed === "askstories" ? "poll" : type;
-    s.className = `badge badge-${displayType}`;
-    s.textContent = displayType;
+    s.className = `badge badge-${type}`;
+    s.textContent = type;
     return s;
 };
 
 const buildCard = (item) => {
+    console.log("📌 Post loaded:", {
+        id: item.id,
+        type: item.type,
+        title: item.title,
+        by: item.by,
+        score: item.score,
+        kids: item.kids?.length || 0,
+    });
+
     const card = document.createElement("div");
     card.className = "post-card";
 
@@ -24,7 +32,7 @@ const buildCard = (item) => {
 
     const meta = document.createElement("p");
     meta.className = "meta";
-    meta.textContent = `${item.score ? "▲ " + item.score + "  " : ""}by ${item.by || "?"}  •  ${timeAgo(item.time)}`;
+    meta.textContent = `#${item.id}  ${item.score ? "▲ " + item.score + "  " : ""}by ${item.by || "?"}  •  ${timeAgo(item.time)}`;
     card.appendChild(meta);
 
     if (item.text) {
@@ -82,6 +90,14 @@ const buildCard = (item) => {
 };
 
 const buildComment = (item, depth = 0) => {
+    console.log("💬 Comment loaded:", {
+        id: item.id,
+        depth,
+        by: item.by,
+        score: item.score,
+        kids: item.kids?.length || 0,
+    });
+
     const div = document.createElement("div");
     div.className = "comment";
 
