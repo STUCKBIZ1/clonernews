@@ -51,18 +51,3 @@ const loadNextPage = async () => {
     ui.loadMoreBtn.textContent = "Load more";
 };
 
-const prependItems = async (ids, feed = state.currentFeed) => {
-    const items = await fetchItems(ids);
-
-    if (feed !== state.currentFeed) return;
-
-    state.allIDs = [...ids, ...state.allIDs];
-    state.loadedCount += ids.length;
-
-    items
-        .filter((i) => i && !i.deleted && !i.dead)
-        .sort((a, b) => b.time - a.time)
-        .forEach((item) =>
-            ui.postList.insertBefore(buildCard(item), ui.postList.firstChild),
-        );
-};
