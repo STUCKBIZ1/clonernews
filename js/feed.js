@@ -1,6 +1,6 @@
 const loadFeed = async (feed) => {
     clearTimeout(state.feedTimer);
-z
+
     state.feedTimer = setTimeout(async () => {
         state.currentFeed = feed;
         state.allIDs = [];
