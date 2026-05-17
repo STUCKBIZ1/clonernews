@@ -1,19 +1,19 @@
 const loadFeed = async (feed) => {
     clearTimeout(state.feedTimer);
-
+    
     state.feedTimer = setTimeout(async () => {
         state.currentFeed = feed;
         state.allIDs = [];
         state.loadedCount = 0;
         state.loading = false;
         state.liveNewIDs = [];
-
+        
         ui.postList.innerHTML = '<div id="status">Loading…</div>';
         ui.loadMoreBtn.disabled = true;
-        ui.liveBanner.style.display = "none";
+        ui.liveBanner.style.display = 'none';`  `
 
         state.allIDs = (await fetchFeedIDs(feed)).sort((a, b) => b - a);
-        const statusEl = document.getElementById("status");
+        const statusEl = document.getElementById('status');
         statusEl?.remove();
         await loadNextPage();
     }, DEBOUNCE_DELAY);
@@ -37,9 +37,9 @@ const loadNextPage = async () => {
     }
 
     const items = await fetchItems(slice);
-    const statusEl = document.getElementById("status");
+    const statusEl = document.getElementById('status');
     statusEl?.remove();
-
+    
     items
         .filter((i) => i && !i.deleted && !i.dead)
         .sort((a, b) => b.time - a.time)

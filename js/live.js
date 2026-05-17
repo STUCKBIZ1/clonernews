@@ -40,5 +40,4 @@ const prependItems = async (ids) => {
         );
 };
 
-
 setInterval(checkLive, POLL_INTERVAL);
