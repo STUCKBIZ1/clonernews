@@ -52,8 +52,8 @@ const loadNextPage = async () => {
         .sort((a, b) => b.time - a.time)
         .forEach((item) => ui.postList.appendChild(buildCard(item)));
 
-    state.loadedCount += slice.length;
-    state.loading = false;
-    ui.loadMoreBtn.disabled = false;
-    ui.loadMoreBtn.textContent = "Load more";
-};
+        state.loadedCount += slice.length;
+        state.loading = false;
+        ui.loadMoreBtn.disabled = false;
+        ui.loadMoreBtn.textContent = "Load more";
+    };

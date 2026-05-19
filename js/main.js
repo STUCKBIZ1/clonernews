@@ -6,7 +6,7 @@ ui.tabs.forEach((btn) => {
     });
 });
 
-ui.loadMoreBtn.addEventListener("click", loadNextPage);
+ ui.loadMoreBtn.addEventListener("click", loadNextPage);
 
 window.addEventListener("scroll", () => {
     if (state.scrollTimer) return;
@@ -14,7 +14,7 @@ window.addEventListener("scroll", () => {
         state.scrollTimer = null;
         if (
             window.innerHeight + window.scrollY >=
-                document.body.scrollHeight - 300 &&
+                document.body.scrollHeight-300 &&
             !state.loading
         ) {
             loadNextPage();
